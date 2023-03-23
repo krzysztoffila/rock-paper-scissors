@@ -22,11 +22,23 @@ function handSelection() {
 //pobieranie losowo na podstawie zmiennej hands
 const aiChoice = () => hands[Math.floor(Math.random() * 3)].dataset.option;
 
+function checkResult(player, ai) {
+    console.log(`gracz: ${player} | ai: ${ai}`)
+    if (player === ai) {
+        console.log('REMIS')
+    } else if ((player === 'papier' && ai === 'kamień') || (player === 'kamień' && ai === 'papier') || (player === 'nożyczki' && ai === 'papier')) {
+        console.log('Wygrywa Gracz')
+    } else if ((ai === 'papier' && player === 'kamień') || (ai === 'kamień' && player === 'papier') || (ai === 'nożyczki' && player === 'papier')) {
+        console.log('Wygrywa Komputer')
+    }
+}
 
 function startGame() {
     // zwraca null
     if (!game.playerHand) return alert('Wybierz dłoń');
     game.aiHand = aiChoice()
+
+    const gameResult = checkResult(game.playerHand, game.aiHand)
 }
 
 
