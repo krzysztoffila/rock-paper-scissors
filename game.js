@@ -10,16 +10,28 @@ const game = {
     playerHand: null,
     aiHand: null
 }
-
+// Wybór gracza
 const hands = [...document.querySelectorAll('.select img')];
 
 function handSelection() {
     //przypisanie z data-option - dostajemy sie do wlasciwosci po kropce
     game.playerHand = this.dataset.option;
-    hands.forEach(hand => {
-        hand.style.boxShadow = "";
-    })
+    hands.forEach(hand => hand.style.boxShadow = "");
     this.style.boxShadow = "0 0 0 4px yellow";
 }
 
+function aiChoice() {
+    //pobieranie losowo na podstawie zmiennej hands
+    let aiHand = hands[Math.floor(Math.random() * 3)].dataset.option;
+    return aiHand
+}
+
+function startGame() {
+    // zwraca null
+    if (!game.playerHand) return alert('Wybierz dłoń');
+    game.aiHand = aiChoice()
+}
+
+
 hands.forEach(hand => hand.addEventListener('click', handSelection));
+document.querySelector('.start').addEventListener('click', startGame);
