@@ -19,12 +19,9 @@ function handSelection() {
     hands.forEach(hand => hand.style.boxShadow = "");
     this.style.boxShadow = "0 0 0 4px yellow";
 }
+//pobieranie losowo na podstawie zmiennej hands
+const aiChoice = () => hands[Math.floor(Math.random() * 3)].dataset.option;
 
-function aiChoice() {
-    //pobieranie losowo na podstawie zmiennej hands
-    let aiHand = hands[Math.floor(Math.random() * 3)].dataset.option;
-    return aiHand
-}
 
 function startGame() {
     // zwraca null
