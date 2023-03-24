@@ -26,11 +26,9 @@ function checkResult(player, ai) {
     console.log(`gracz: ${player} | ai: ${ai}`)
     if (player === ai) {
         console.log('REMIS')
-    } else if ((player === 'papier' && ai === 'kamień') || (player === 'kamień' && ai === 'papier') || (player === 'nożyczki' && ai === 'papier')) {
+    } else if ((player === 'papier' && ai === 'kamień') || (player === 'kamień' && ai === 'nożyczki') || (player === 'nożyczki' && ai === 'papier')) {
         console.log('Wygrywa Gracz')
-    } else if ((ai === 'papier' && player === 'kamień') || (ai === 'kamień' && player === 'papier') || (ai === 'nożyczki' && player === 'papier')) {
-        console.log('Wygrywa Komputer')
-    }
+    } else console.log('Wygrywa Komputer')
 }
 
 function startGame() {
