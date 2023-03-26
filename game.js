@@ -25,18 +25,19 @@ const aiChoice = () => hands[Math.floor(Math.random() * 3)].dataset.option;
 function checkResult(player, ai) {
     console.log(`gracz: ${player} | ai: ${ai}`)
     if (player === ai) {
-        console.log('REMIS')
+        return 'Draw'
     } else if ((player === 'papier' && ai === 'kamień') || (player === 'kamień' && ai === 'nożyczki') || (player === 'nożyczki' && ai === 'papier')) {
-        console.log('Wygrywa Gracz')
-    } else console.log('Wygrywa Komputer')
+        return 'win'
+    } else return 'lose'
 }
 
 function startGame() {
     // zwraca null
-    if (!game.playerHand) return alert('Wybierz dłoń');
-    game.aiHand = aiChoice()
+    if (!game.playerHand) return alert('Wybierz dłoń!');
+    game.aiHand = aiChoice();
 
-    const gameResult = checkResult(game.playerHand, game.aiHand)
+    const gameResult = checkResult(game.playerHand, game.aiHand);
+    console.log(gameResult);
 }
 
 
