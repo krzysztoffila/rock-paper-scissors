@@ -51,13 +51,19 @@ function publishResult(player, ai, result) {
     }
 }
 
+function endGame() {
+    document.querySelector(`[data-option="${game.playerHand}"]`).style.boxShadow = "";
+    game.playerHand = null;
+}
+
 function startGame() {
     // zwraca null
     if (!game.playerHand) return alert('Wybierz dłoń!');
     game.aiHand = aiChoice();
 
     const gameResult = checkResult(game.playerHand, game.aiHand);
-    publishResult(game.playerHand, game.aiHand, gameResult)
+    publishResult(game.playerHand, game.aiHand, gameResult);
+    endGame()
 }
 
 
