@@ -27,8 +27,15 @@ function checkResult(player, ai) {
     if (player === ai) {
         return 'Draw'
     } else if ((player === 'papier' && ai === 'kamień') || (player === 'kamień' && ai === 'nożyczki') || (player === 'nożyczki' && ai === 'papier')) {
-        return 'win'
-    } else return 'lose'
+        return 'Win'
+    } else return 'Lose'
+}
+
+function publishResult(player, ai, result) {
+    document.querySelector('[data-summary="your-choice"]').textContent = player;
+    document.querySelector('[data-summary="ai-choice"]').textContent = ai;
+
+    document.querySelector('p.numbers span').textContent = ++gameSummary.numbers
 }
 
 function startGame() {
@@ -38,6 +45,7 @@ function startGame() {
 
     const gameResult = checkResult(game.playerHand, game.aiHand);
     console.log(gameResult);
+    publishResult(game.playerHand, game.aiHand, gameResult)
 }
 
 
