@@ -23,12 +23,11 @@ function handSelection() {
 const aiChoice = () => hands[Math.floor(Math.random() * 3)].dataset.option;
 
 function checkResult(player, ai) {
-    console.log(`gracz: ${player} | ai: ${ai}`)
     if (player === ai) {
-        return 'Draw'
+        return 'draw'
     } else if ((player === 'papier' && ai === 'kamień') || (player === 'kamień' && ai === 'nożyczki') || (player === 'nożyczki' && ai === 'papier')) {
-        return 'Win'
-    } else return 'Lose'
+        return 'win'
+    } else return 'lose'
 }
 
 function publishResult(player, ai, result) {
@@ -36,6 +35,20 @@ function publishResult(player, ai, result) {
     document.querySelector('[data-summary="ai-choice"]').textContent = ai;
 
     document.querySelector('p.numbers span').textContent = ++gameSummary.numbers
+
+    if (result === 'win') {
+        document.querySelector('p.wins span').textContent = ++gameSummary.wins
+        document.querySelector('[data-summary="who-win"]').textContent = "Wygrałeś!!!"
+        document.querySelector('[data-summary="who-win"]').style.color = "green"
+    } else if (result === 'lose') {
+        document.querySelector('p.losses span').textContent = ++gameSummary.losses
+        document.querySelector('[data-summary="who-win"]').textContent = "Przegrałeś ;("
+        document.querySelector('[data-summary="who-win"]').style.color = "red"
+    } else {
+        document.querySelector('p.draws span').textContent = ++gameSummary.draws
+        document.querySelector('[data-summary="who-win"]').textContent = "Remis"
+        document.querySelector('[data-summary="who-win"]').style.color = "black"
+    }
 }
 
 function startGame() {
@@ -44,7 +57,6 @@ function startGame() {
     game.aiHand = aiChoice();
 
     const gameResult = checkResult(game.playerHand, game.aiHand);
-    console.log(gameResult);
     publishResult(game.playerHand, game.aiHand, gameResult)
 }
 
